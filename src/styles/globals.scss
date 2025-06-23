@@ -1,5 +1,17 @@
 @use "./reset/reset" as *;
-
+@use "./fonts/fonts" as *;
 body {
-  font-family: "Gilroy", sans-serif;
+  font-family: "Gilroy-Medium", sans-serif;
+  background-color: #141414;
+  color: #f9f9f9;
+}
+label {
+  font-size: 12px;
+  line-height: 133%;
+  letter-spacing: -0.02em;
+  color: #686868;
+}
+.container {
+  max-width: 375px;
+  padding: 20px;
 }

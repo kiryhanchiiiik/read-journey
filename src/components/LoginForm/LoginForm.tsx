@@ -1,22 +1,17 @@
 import { useState } from "react";
 import * as Yup from "yup";
-import css from "./RegistrationForm.module.scss";
+import css from "./LoginForm.module.scss";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 
 interface RegistrationFormValues {
-  name: string;
   email: string;
   password: string;
 }
 
 const validationSchema = Yup.object().shape({
-  name: Yup.string()
-    .min(3, "Too short!")
-    .max(20, "Too long!")
-    .required("Required!"),
   email: Yup.string()
     .matches(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/, "Email must be a valid format")
     .required("Required!"),
@@ -24,7 +19,7 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().min(7, "Too short!").required("Required!"),
 });
 
-const RegistrationForm = () => {
+const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => setShowPassword((prev) => !prev);
@@ -40,11 +35,11 @@ const RegistrationForm = () => {
 
   const onSubmit = async (data: RegistrationFormValues) => {
     try {
-      const { name, email, password } = data;
+      const { email, password } = data;
 
-      console.log("Registering user:", name, email, password);
+      console.log("Login user:", email, password);
 
-      toast.success("Registration successful!", {
+      toast.success("Login successful!", {
         position: "top-right",
         autoClose: 5000,
       });
@@ -52,7 +47,7 @@ const RegistrationForm = () => {
     } catch (err) {
       console.error("Login error:", err);
 
-      toast.error("Email already in use", {
+      toast.error("Failed login", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -77,25 +72,10 @@ const RegistrationForm = () => {
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className={css.inputContainer}>
-            {/* name */}
-            <div className={css.inputWrapper}>
-              <label htmlFor="name" className={css.label}>
-                Name:
-              </label>
-              <input
-                id="name"
-                className={css.input}
-                type="text"
-                {...register("name")}
-                placeholder="Ilona Ratushniak"
-              />
-              <div className={css.error}>{errors.name?.message}</div>
-            </div>
-
             {/* email */}
             <div className={css.inputWrapper}>
               <label htmlFor="email" className={css.label}>
-                Email:
+                Mail:
               </label>
               <input
                 id="email"
@@ -141,10 +121,10 @@ const RegistrationForm = () => {
 
             <div className={css.btnContainer}>
               <button className={css.registerBtn} type="submit">
-                Registration
+                Log in
               </button>
-              <Link className={css.loginLink} to="/login">
-                Already have an account?
+              <Link className={css.loginLink} to="/register">
+                Don’t have an account?
               </Link>
             </div>
           </div>
@@ -154,4 +134,4 @@ const RegistrationForm = () => {
   );
 };
 
-export default RegistrationForm;
+export default LoginForm;

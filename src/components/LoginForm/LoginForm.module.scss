@@ -41,7 +41,6 @@
 }
 .lastInput {
   padding-left: 78px;
-  margin-bottom: 12px;
 }
 .inputWrapper {
   position: relative;
@@ -57,13 +56,14 @@
   align-items: center;
   gap: 14px;
   margin-bottom: 20px;
+  margin-top: 68px;
 }
 
 .registerBtn {
   font-family: "Gilroy-Bold", sans-serif;
   background-color: #f9f9f9;
   border-radius: 30px;
-  padding: 12px 25px;
+  padding: 12px 45px;
 }
 
 .loginLink {

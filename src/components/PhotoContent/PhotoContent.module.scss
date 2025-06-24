@@ -1,0 +1,10 @@
+.photoContainer {
+  display: flex;
+  justify-content: center;
+  border-radius: 30px;
+  background-color: #1f1f1f;
+
+  > img {
+    margin-top: 20px;
+  }
+}

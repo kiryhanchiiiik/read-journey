@@ -1,10 +1,14 @@
+import PhotoContent from "../../components/PhotoContent/PhotoContent";
 import RegistrationForm from "../../components/RegistrationForm/RegistrationForm";
 import css from "./RegistrationPage.module.scss";
 
 const RegistrationPage = () => {
   return (
     <section className={css.regPage}>
-      <RegistrationForm />
+      <div className={css.contentWrapper}>
+        <RegistrationForm />
+        <PhotoContent />
+      </div>
     </section>
   );
 };

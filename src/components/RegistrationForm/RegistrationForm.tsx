@@ -4,6 +4,7 @@ import css from "./RegistrationForm.module.scss";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 interface RegistrationFormValues {
   name: string;
@@ -141,9 +142,9 @@ const RegistrationForm = () => {
               <button className={css.registerBtn} type="submit">
                 Registration
               </button>
-              <a className={css.loginLink} href="#">
+              <Link className={css.loginLink} to="/login">
                 Already have an account?
-              </a>
+              </Link>
             </div>
           </div>
         </form>

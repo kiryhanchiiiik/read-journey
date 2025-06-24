@@ -1,10 +1,64 @@
 import { useState } from "react";
+import * as Yup from "yup";
 import css from "./RegistrationForm.module.scss";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { toast } from "react-toastify";
+
+interface RegistrationFormValues {
+  name: string;
+  email: string;
+  password: string;
+}
+
+const validationSchema = Yup.object().shape({
+  name: Yup.string()
+    .min(3, "Too short!")
+    .max(20, "Too long!")
+    .required("Required!"),
+  email: Yup.string()
+    .matches(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/, "Email must be a valid format")
+    .required("Required!"),
+
+  password: Yup.string().min(7, "Too short!").required("Required!"),
+});
 
 const RegistrationForm = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => setShowPassword((prev) => !prev);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<RegistrationFormValues>({
+    resolver: yupResolver(validationSchema),
+  });
+
+  const onSubmit = async (data: RegistrationFormValues) => {
+    try {
+      const { name, email, password } = data;
+      console.log(data);
+
+      toast.success("Registration successful!", {
+        position: "top-right",
+        autoClose: 5000,
+      });
+      reset();
+    } catch (err) {
+      console.error("Login error:", err);
+
+      toast.error("Email already in use", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        pauseOnHover: true,
+        closeOnClick: true,
+      });
+    }
+  };
 
   return (
     <div className={css.regFormSect}>
@@ -19,7 +73,7 @@ const RegistrationForm = () => {
           <span className={css.grayTitle}>a book</span>
         </h1>
 
-        <form>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className={css.inputContainer}>
             {/* name */}
             <div className={css.inputWrapper}>
@@ -30,10 +84,10 @@ const RegistrationForm = () => {
                 id="name"
                 className={css.input}
                 type="text"
-                required
+                {...register("name")}
                 placeholder="Ilona Ratushniak"
               />
-              <div className={css.error}></div>
+              <div className={css.error}>{errors.name?.message}</div>
             </div>
 
             {/* email */}
@@ -45,10 +99,10 @@ const RegistrationForm = () => {
                 id="email"
                 className={css.input}
                 type="email"
-                required
+                {...register("email")}
                 placeholder="Your@email.com"
               />
-              <div className={css.error}></div>
+              <div className={css.error}>{errors.email?.message}</div>
             </div>
 
             {/* password */}
@@ -61,7 +115,7 @@ const RegistrationForm = () => {
                   id="password"
                   className={`${css.input} ${css.lastInput}`}
                   type={showPassword ? "text" : "password"}
-                  required
+                  {...register("password")}
                   placeholder="Yourpasswordhere"
                 />
                 <button
@@ -80,7 +134,7 @@ const RegistrationForm = () => {
                   </svg>
                 </button>
               </div>
-              <div className={css.error}></div>
+              <div className={css.error}>{errors.password?.message}</div>
             </div>
 
             <div className={css.btnContainer}>

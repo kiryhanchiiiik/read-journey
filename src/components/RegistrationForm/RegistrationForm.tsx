@@ -41,7 +41,7 @@ const RegistrationForm = () => {
   const onSubmit = async (data: RegistrationFormValues) => {
     try {
       const { name, email, password } = data;
-      console.log(data);
+      console.log("Registering user:", name, email, password);
 
       toast.success("Registration successful!", {
         position: "top-right",

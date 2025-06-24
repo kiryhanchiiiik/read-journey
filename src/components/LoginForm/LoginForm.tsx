@@ -6,7 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 
-interface RegistrationFormValues {
+interface LoginFormValues {
   email: string;
   password: string;
 }
@@ -29,11 +29,11 @@ const LoginForm = () => {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<RegistrationFormValues>({
+  } = useForm<LoginFormValues>({
     resolver: yupResolver(validationSchema),
   });
 
-  const onSubmit = async (data: RegistrationFormValues) => {
+  const onSubmit = async (data: LoginFormValues) => {
     try {
       const { email, password } = data;
 
@@ -62,7 +62,7 @@ const LoginForm = () => {
       <div className={css.regFormWrapper}>
         <div className={css.logoWrapper}>
           <a href="#" className={css.logo}>
-            <img src="/public/logo.svg" alt="" />
+            <img src="/public/logo.svg" alt="Logotype" />
           </a>
         </div>
         <h1 className={css.title}>
@@ -120,7 +120,7 @@ const LoginForm = () => {
             </div>
 
             <div className={css.btnContainer}>
-              <button className={css.registerBtn} type="submit">
+              <button className={css.loginBtn} type="submit">
                 Log in
               </button>
               <Link className={css.loginLink} to="/register">

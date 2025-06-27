@@ -3,8 +3,8 @@ import "./App.scss";
 import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
 import { Route, Routes } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
-import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
+import RecommendedPage from "./pages/HomePage/RecommendedPage";
 
 function App() {
   const isAuthenticated = false;
@@ -17,7 +17,7 @@ function App() {
           path="/"
           element={
             <ProtectedRoute isAuthenticated={isAuthenticated}>
-              <HomePage />
+              <RecommendedPage />
             </ProtectedRoute>
           }
         />

@@ -38,6 +38,10 @@
   &::placeholder {
     color: #f9f9f9;
   }
+
+  &:focus {
+    border: 1px solid rgba(249, 249, 249, 0.1);
+  }
 }
 .lastInput {
   padding-left: 78px;
@@ -64,6 +68,16 @@
   background-color: #f9f9f9;
   border-radius: 30px;
   padding: 12px 45px;
+  border: 1px solid rgba(249, 249, 249, 0.2);
+
+  transition: color 350ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 350ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover,
+  &:focus {
+    background-color: transparent;
+    color: #f9f9f9;
+  }
 }
 
 .loginLink {
@@ -73,6 +87,12 @@
   text-decoration: underline;
   text-decoration-skip-ink: none;
   color: #686868;
+  transition: color 350ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover,
+  &:focus {
+    color: #f9f9f9;
+  }
 }
 
 .lastInputWrapper {

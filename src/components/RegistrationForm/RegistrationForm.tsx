@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import { register } from "../../redux/auth/operations";
+import { useAppDispatch } from "../../redux/store";
 
 interface RegistrationFormValues {
   name: string;
@@ -25,12 +27,13 @@ const validationSchema = Yup.object().shape({
 });
 
 const RegistrationForm = () => {
+  const dispatch = useAppDispatch();
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => setShowPassword((prev) => !prev);
 
   const {
-    register,
+    register: formRegister,
     handleSubmit,
     formState: { errors },
     reset,
@@ -40,9 +43,7 @@ const RegistrationForm = () => {
 
   const onSubmit = async (data: RegistrationFormValues) => {
     try {
-      const { name, email, password } = data;
-
-      console.log("Registering user:", name, email, password);
+      await dispatch(register(data));
 
       toast.success("Registration successful!", {
         position: "top-right",
@@ -86,7 +87,7 @@ const RegistrationForm = () => {
                 id="name"
                 className={css.input}
                 type="text"
-                {...register("name")}
+                {...formRegister("name")}
                 placeholder="Ilona Ratushniak"
               />
               <div className={css.error}>{errors.name?.message}</div>
@@ -101,7 +102,7 @@ const RegistrationForm = () => {
                 id="email"
                 className={css.input}
                 type="email"
-                {...register("email")}
+                {...formRegister("email")}
                 placeholder="Your@email.com"
               />
               <div className={css.error}>{errors.email?.message}</div>
@@ -117,7 +118,7 @@ const RegistrationForm = () => {
                   id="password"
                   className={`${css.input} ${css.lastInput}`}
                   type={showPassword ? "text" : "password"}
-                  {...register("password")}
+                  {...formRegister("password")}
                   placeholder="Yourpasswordhere"
                 />
                 <button

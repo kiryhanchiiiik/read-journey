@@ -13,7 +13,7 @@ createRoot(document.getElementById("root")!).render(
     <Provider store={store}>
       <PersistGate
         persistor={persistor}
-        onBeforeLift={() => store.dispatch(refreshUser())}
+        onBeforeLift={async () => await store.dispatch(refreshUser())}
       >
         <BrowserRouter>
           <App />

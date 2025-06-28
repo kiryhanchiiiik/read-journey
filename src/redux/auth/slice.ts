@@ -14,6 +14,7 @@ export interface AuthState {
   isLoggedIn: boolean;
   isRefreshing: boolean;
 }
+
 const INITIAL_STATE: AuthState = {
   user: {
     name: null,
@@ -49,6 +50,7 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
       })
+
       .addCase(login.pending, (state) => {
         state.isLoading = true;
         state.error = null;
@@ -66,6 +68,7 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
       })
+
       .addCase(refreshUser.pending, (state) => {
         state.isRefreshing = true;
         state.error = null;
@@ -77,17 +80,21 @@ const authSlice = createSlice({
       })
       .addCase(refreshUser.rejected, (state, action: PayloadAction<any>) => {
         state.isRefreshing = false;
+        state.token = null;
+        state.user = { name: null, email: null };
+        state.isLoggedIn = false;
         state.error = action.payload;
       })
+
       .addCase(logout.pending, (state) => {
-        state.isRefreshing = true;
+        state.isLoading = true;
         state.error = null;
       })
       .addCase(logout.fulfilled, () => {
         return INITIAL_STATE;
       })
       .addCase(logout.rejected, (state, action: PayloadAction<any>) => {
-        state.isRefreshing = false;
+        state.isLoading = false;
         state.error = action.payload;
       }),
 });

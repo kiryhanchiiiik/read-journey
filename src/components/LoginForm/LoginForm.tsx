@@ -4,7 +4,7 @@ import css from "./LoginForm.module.scss";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../redux/store";
 import { login } from "../../redux/auth/operations";
 
@@ -22,6 +22,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const LoginForm = () => {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -39,6 +40,7 @@ const LoginForm = () => {
   const onSubmit = async (data: LoginFormValues) => {
     try {
       await dispatch(login(data));
+      navigate("/recommended");
 
       toast.success("Login successful!", {
         position: "top-right",

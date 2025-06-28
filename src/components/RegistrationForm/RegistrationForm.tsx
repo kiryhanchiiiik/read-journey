@@ -4,7 +4,7 @@ import css from "./RegistrationForm.module.scss";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { register } from "../../redux/auth/operations";
 import { useAppDispatch } from "../../redux/store";
 
@@ -27,6 +27,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const RegistrationForm = () => {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -44,6 +45,7 @@ const RegistrationForm = () => {
   const onSubmit = async (data: RegistrationFormValues) => {
     try {
       await dispatch(register(data));
+      navigate("/recommended");
 
       toast.success("Registration successful!", {
         position: "top-right",

@@ -3,7 +3,7 @@ import "./App.scss";
 import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
 import { Route, Routes } from "react-router-dom";
 import LoginPage from "./pages/LoginPage/LoginPage";
-import RecommendedPage from "./pages/HomePage/RecommendedPage";
+import RecommendedPage from "./pages/RecommendedPage/RecommendedPage";
 import PrivateRoute from "./PrivateRoute";
 import { useAppDispatch } from "./redux/store";
 import { useSelector } from "react-redux";

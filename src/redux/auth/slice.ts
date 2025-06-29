@@ -27,6 +27,11 @@ const INITIAL_STATE: AuthState = {
   isRefreshing: false,
 };
 
+const safeUser = (user: User | undefined | null): User => ({
+  name: user?.name ?? null,
+  email: user?.email ?? null,
+});
+
 const authSlice = createSlice({
   name: "auth",
   initialState: INITIAL_STATE,
@@ -43,7 +48,7 @@ const authSlice = createSlice({
           state.isLoading = false;
           state.isLoggedIn = true;
           state.token = action.payload.token;
-          state.user = action.payload.user;
+          state.user = safeUser(action.payload.user);
         }
       )
       .addCase(register.rejected, (state, action: PayloadAction<any>) => {
@@ -61,7 +66,7 @@ const authSlice = createSlice({
           state.isLoading = false;
           state.isLoggedIn = true;
           state.token = action.payload.token;
-          state.user = action.payload.user;
+          state.user = safeUser(action.payload.user);
         }
       )
       .addCase(login.rejected, (state, action: PayloadAction<any>) => {
@@ -76,7 +81,7 @@ const authSlice = createSlice({
       .addCase(refreshUser.fulfilled, (state, action: PayloadAction<User>) => {
         state.isRefreshing = false;
         state.isLoggedIn = true;
-        state.user = action.payload;
+        state.user = safeUser(action.payload);
       })
       .addCase(refreshUser.rejected, (state, action: PayloadAction<any>) => {
         state.isRefreshing = false;

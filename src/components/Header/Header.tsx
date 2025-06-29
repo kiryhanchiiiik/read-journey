@@ -2,11 +2,17 @@ import { useState } from "react";
 import clsx from "clsx";
 import css from "./Header.module.scss";
 import { NavLink } from "react-router-dom";
+import { useAppDispatch } from "../../redux/store";
+import { logout } from "../../redux/auth/operations";
 
 const buildLinkClass = ({ isActive }: { isActive: boolean }) =>
   clsx(css.menuLink, isActive && css.active);
 
 const Header = () => {
+  const dispatch = useAppDispatch();
+  const onLogout = () => {
+    dispatch(logout());
+  };
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -51,7 +57,9 @@ const Header = () => {
                 </NavLink>
               </li>
             </ul>
-            <button className={css.logoutBtn}>Log out</button>
+            <button onClick={onLogout} className={css.logoutBtn}>
+              Log out
+            </button>
           </nav>
         </div>
       </div>

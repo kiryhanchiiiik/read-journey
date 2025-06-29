@@ -1,5 +1,10 @@
 import { useState } from "react";
+import clsx from "clsx";
 import css from "./Header.module.scss";
+import { NavLink } from "react-router-dom";
+
+const buildLinkClass = ({ isActive }: { isActive: boolean }) =>
+  clsx(css.menuLink, isActive && css.active);
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -25,22 +30,25 @@ const Header = () => {
               <use href={`/sprite.svg#menu`} />
             </svg>
           </button>
+          {isMenuOpen && (
+            <div className={css.menuOverlay} onClick={closeMenu} />
+          )}
           <nav className={`${css.mobileMenu} ${isMenuOpen ? css.open : ""}`}>
             <button className={css.closeBtn} onClick={closeMenu}>
-              <svg width={18} height={18}>
+              <svg width={28} height={28}>
                 <use href="/sprite.svg#cross" />
               </svg>
             </button>
             <ul className={css.list}>
               <li>
-                <a className={css.menuLink} href="#">
+                <NavLink className={buildLinkClass} to="/">
                   Home
-                </a>
+                </NavLink>
               </li>
               <li>
-                <a className={css.menuLink} href="#">
+                <NavLink className={buildLinkClass} to="/library">
                   My library
-                </a>
+                </NavLink>
               </li>
             </ul>
             <button className={css.logoutBtn}>Log out</button>

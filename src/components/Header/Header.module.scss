@@ -40,6 +40,17 @@
   z-index: 2;
   background-color: #262626;
 }
+.menuOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
 
 .list {
   display: flex;
@@ -90,4 +101,14 @@
 
 .menuLink {
   color: #686868;
+  position: relative;
+  text-decoration: none;
+  padding-bottom: 4px;
+
+  &.active {
+    color: #ffffff;
+    border-bottom: 2px solid #3b82f6;
+  }
+
+  transition: color 0.3s ease, border-bottom 0.3s ease;
 }

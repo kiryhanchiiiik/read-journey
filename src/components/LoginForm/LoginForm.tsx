@@ -40,7 +40,7 @@ const LoginForm = () => {
   const onSubmit = async (data: LoginFormValues) => {
     try {
       await dispatch(login(data));
-      navigate("/recommended");
+      navigate("/");
 
       toast.success("Login successful!", {
         position: "top-right",

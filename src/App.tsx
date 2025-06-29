@@ -28,7 +28,7 @@ function App() {
         <Route path="/register" element={<RegistrationPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route
-          path="/recommended"
+          path="/"
           element={<PrivateRoute element={<RecommendedPage />} />}
         />
       </Routes>

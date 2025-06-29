@@ -45,7 +45,7 @@ const RegistrationForm = () => {
   const onSubmit = async (data: RegistrationFormValues) => {
     try {
       await dispatch(register(data));
-      navigate("/recommended");
+      navigate("/");
 
       toast.success("Registration successful!", {
         position: "top-right",

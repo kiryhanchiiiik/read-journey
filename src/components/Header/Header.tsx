@@ -27,13 +27,21 @@ const Header = () => {
           </button>
           <nav className={`${css.mobileMenu} ${isMenuOpen ? css.open : ""}`}>
             <button className={css.closeBtn} onClick={closeMenu}>
-              <svg width={28} height={28}>
+              <svg width={18} height={18}>
                 <use href="/sprite.svg#cross" />
               </svg>
             </button>
             <ul className={css.list}>
-              <li>Home</li>
-              <li>My library</li>
+              <li>
+                <a className={css.menuLink} href="#">
+                  Home
+                </a>
+              </li>
+              <li>
+                <a className={css.menuLink} href="#">
+                  My library
+                </a>
+              </li>
             </ul>
             <button className={css.logoutBtn}>Log out</button>
           </nav>

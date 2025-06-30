@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import { selectUserIsRefreshing } from "./redux/auth/selectors";
 import { useEffect } from "react";
 import { refreshUser } from "./redux/auth/operations";
+import LibraryPage from "./pages/LibraryPage/LibraryPage";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -30,6 +31,10 @@ function App() {
         <Route
           path="/"
           element={<PrivateRoute element={<RecommendedPage />} />}
+        />
+        <Route
+          path="/library"
+          element={<PrivateRoute element={<LibraryPage />} />}
         />
       </Routes>
       <ToastContainer />

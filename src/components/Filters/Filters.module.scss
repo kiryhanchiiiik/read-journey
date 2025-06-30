@@ -1,0 +1,62 @@
+.filters {
+  border-radius: 30px;
+  background: #1f1f1f;
+  padding: 20px;
+}
+
+.filterLabel {
+  font-size: 10px;
+  margin-left: 14px;
+}
+
+// form
+
+.input {
+  font-size: 12px;
+  line-height: 133%;
+  letter-spacing: -0.02em;
+  width: 100%;
+  border-radius: 12px;
+  padding: 14px;
+  padding-left: 75px;
+  background: #262626;
+  color: #f9f9f9;
+
+  &::placeholder {
+    color: #f9f9f9;
+  }
+  &:focus {
+    border: 1px solid rgba(249, 249, 249, 0.1);
+  }
+}
+.inputMargin {
+  padding-left: 83px;
+  margin-bottom: 12px;
+}
+
+.inputWrapper {
+  position: relative;
+}
+
+.label {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+}
+
+.formWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.applyBtn {
+  font-family: "Gilroy-Bold", sans-serif;
+  border: 1px solid rgba(249, 249, 249, 0.2);
+  border-radius: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  color: #f9f9f9;
+}

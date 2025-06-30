@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import css from "./Filters.module.scss";
 
 const Filters = () => {
@@ -40,6 +41,39 @@ const Filters = () => {
             </div>
           </div>
         </form>
+      </div>
+      <div className={css.libraryContainer}>
+        <h2>Start your workout</h2>
+        <ul className={css.stepNav}>
+          <li>
+            <div className={css.stepNavWrapper}>
+              <div className={css.numberCustom}>1</div>
+              <div>
+                <p className={css.subTitle}>
+                  <span>Create a personal library:</span> add the books you
+                  intend to read to it.
+                </p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div className={css.stepNavWrapper}>
+              <div className={css.numberCustom}>2</div>
+              <div>
+                <p className={`${css.subTitle} ${css.subTitleWidth}`}>
+                  <span>Create your first workout:</span> define a goal, choose
+                  a period, start training.
+                </p>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <Link className={css.link} to="/library">
+          My library
+          <svg width={24} height={24}>
+            <use href="/public/sprite.svg#arrow"></use>
+          </svg>
+        </Link>
       </div>
     </div>
   );

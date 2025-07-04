@@ -1,15 +1,14 @@
-import css from "./BookList.module.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
 import { useState, useEffect, useRef } from "react";
 import { authInstance } from "../../redux/auth/operations";
+import css from "./BookList.module.scss";
+import "swiper/css";
+import "swiper/css/navigation";
 
 const BookList = () => {
   const [books, setBooks] = useState<any[] | null>(null);
 
-  // refs для кастомных кнопок
   const prevRef = useRef<HTMLButtonElement>(null);
   const nextRef = useRef<HTMLButtonElement>(null);
 
@@ -32,7 +31,7 @@ const BookList = () => {
 
       {Array.isArray(books) && books.length > 0 && (
         <>
-          <div>
+          <div className={css.btnWrapper}>
             <button ref={prevRef} className={css.customPrevBtn}>
               <svg width={16} height={16}>
                 <use href="/public/sprite.svg#swiper-arrow"></use>
@@ -50,6 +49,7 @@ const BookList = () => {
               prevEl: prevRef.current,
               nextEl: nextRef.current,
             }}
+            className={css.swiper}
             modules={[Navigation]}
             slidesPerView={2}
             spaceBetween={20}

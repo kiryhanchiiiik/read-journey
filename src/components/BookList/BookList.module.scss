@@ -1,4 +1,5 @@
 .bookList {
+  position: relative;
   border-radius: 30px;
   background-color: #1f1f1f;
   padding-left: 20px;
@@ -21,6 +22,7 @@
   font-size: 14px;
   line-height: 129%;
   letter-spacing: -0.02em;
+  margin-top: 8px;
 }
 
 .authorPh {
@@ -28,4 +30,35 @@
   line-height: 120%;
   letter-spacing: -0.02em;
   color: #686868;
+}
+
+.btnWrapper {
+  position: absolute;
+  top: 40px;
+  right: 20px;
+}
+.swiper {
+  height: 300px;
+}
+
+.customPrevBtn {
+  border: 1px rgba(249, 249, 249, 0.2) solid;
+  padding: 8px;
+  border-radius: 100%;
+  transform: rotate(180deg);
+  margin-right: 8px;
+  color: #f9f9f9;
+  &.swiper-button-disabled {
+    color: rgba(249, 249, 249, 0.2);
+  }
+}
+
+.customNextBtn {
+  border: 1px rgba(249, 249, 249, 0.2) solid;
+  padding: 8px;
+  border-radius: 100%;
+  color: #f9f9f9;
+  &.swiper-button-disabled {
+    color: rgba(249, 249, 249, 0.2);
+  }
 }

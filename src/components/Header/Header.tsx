@@ -26,7 +26,7 @@ const Header = () => {
       <div className={css.headerContent}>
         <div className={css.logoWrapper}>
           <a href="#" className={css.logo}>
-            <img src="/public/logo.svg" alt="" />
+            <img src="/logo.svg" alt="" />
           </a>
         </div>
         <div className={css.menuWrapper}>

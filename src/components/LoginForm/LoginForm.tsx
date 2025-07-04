@@ -65,7 +65,7 @@ const LoginForm = () => {
       <div className={css.regFormWrapper}>
         <div className={css.logoWrapper}>
           <a href="#" className={css.logo}>
-            <img src="/public/logo.svg" alt="Logotype" />
+            <img src="/logo.svg" alt="Logotype" />
           </a>
         </div>
         <h1 className={css.title}>

@@ -34,12 +34,12 @@ const BookList = () => {
           <div className={css.btnWrapper}>
             <button ref={prevRef} className={css.customPrevBtn}>
               <svg width={16} height={16}>
-                <use href="/public/sprite.svg#swiper-arrow"></use>
+                <use href="/sprite.svg#swiper-arrow"></use>
               </svg>
             </button>
             <button ref={nextRef} className={css.customNextBtn}>
               <svg width={16} height={16}>
-                <use href="/public/sprite.svg#swiper-arrow"></use>
+                <use href="/sprite.svg#swiper-arrow"></use>
               </svg>
             </button>
           </div>

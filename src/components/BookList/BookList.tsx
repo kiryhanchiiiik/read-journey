@@ -3,27 +3,23 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-// import { useState, useEffect } from "react";
-// import axios from "axios";
-
+import { useState, useEffect } from "react";
+import { authInstance } from "../../redux/auth/operations";
 const BookList = () => {
-  // const [books, setBooks] = useState(null);
+  const [books, setBooks] = useState(null);
 
-  // useEffect(() => {
-  //   const fetchBooks = async () => {
-  //     try {
-  //       const response = await axios.get(
-  //         "https://readjourney.b.goit.study/api/books/recommend"
-  //       );
-  //       setBooks(response.data);
-  //       console.log(response.data);
-  //     } catch (error) {
-  //       console.error("Error fetching books:", error);
-  //     }
-  //   };
+  useEffect(() => {
+    const fetchBooks = async () => {
+      try {
+        const response = await authInstance.get("/books/recommend");
+        setBooks(response.data);
+      } catch (error) {
+        console.error("Error fetching books:", error);
+      }
+    };
 
-  //   fetchBooks();
-  // }, []);
+    fetchBooks();
+  }, []);
 
   return (
     <div className={css.bookList}>

@@ -48,9 +48,6 @@
   transform: rotate(180deg);
   margin-right: 8px;
   color: #f9f9f9;
-  &.swiper-button-disabled {
-    color: rgba(249, 249, 249, 0.2);
-  }
 }
 
 .customNextBtn {
@@ -58,7 +55,13 @@
   padding: 8px;
   border-radius: 100%;
   color: #f9f9f9;
-  &.swiper-button-disabled {
-    color: rgba(249, 249, 249, 0.2);
-  }
+}
+
+:global(.swiper-button-disabled).customNextBtn svg,
+.customNextBtn:global(.swiper-button-disabled) svg {
+  color: rgba(249, 249, 249, 0.2);
+}
+:global(.swiper-button-disabled).customPrevBtn svg,
+.customPrevBtn:global(.swiper-button-disabled) svg {
+  color: rgba(249, 249, 249, 0.2);
 }

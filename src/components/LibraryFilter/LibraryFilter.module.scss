@@ -32,7 +32,9 @@
 }
 .inputMargin {
   padding-left: 83px;
-  margin-bottom: 12px;
+}
+.inputLastMargin {
+  padding-left: 115px;
 }
 
 .inputWrapper {
@@ -123,4 +125,38 @@
   &:focus {
     color: #f9f9f9;
   }
+}
+
+.btnContainer {
+  margin-top: 12px;
+}
+.stepNav {
+  display: flex;
+  flex-direction: row;
+}
+
+.contentImg {
+  width: 71px;
+  height: 107px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+.contentTitle {
+  width: 71px;
+  font-size: 10px;
+  line-height: 120%;
+  letter-spacing: -0.02em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.authorPh {
+  width: 64px;
+  font-size: 10px;
+  line-height: 120%;
+  letter-spacing: -0.02em;
+  color: #686868;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

@@ -18,11 +18,13 @@
   height: 208px;
 }
 .contentTitle {
-  width: 140px;
   font-size: 14px;
   line-height: 129%;
   letter-spacing: -0.02em;
   margin-top: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .authorPh {
@@ -38,7 +40,7 @@
   right: 20px;
 }
 .swiper {
-  height: 300px;
+  height: 245px;
 }
 
 .customPrevBtn {

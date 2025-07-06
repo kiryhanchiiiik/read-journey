@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import book from "../../img/book.png";
 import css from "./MyLibrary.module.scss";
 
 const filterOptions = ["Unread", "In progress", "Done", "All books"];
@@ -64,6 +65,16 @@ const MyLibrary = () => {
             )}
           </div>
         </div>
+      </div>
+
+      <div className={css.flexContainer}>
+        <div className={css.noBookContainer}>
+          <img src={book} alt="" />
+        </div>
+        <p className={css.noBookDesc}>
+          To start training, <span>add some of your books</span> or from the
+          recommended ones
+        </p>
       </div>
     </div>
   );

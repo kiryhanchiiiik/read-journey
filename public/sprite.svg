@@ -31,7 +31,7 @@
     d="M12 8l8 8-8 8"
   />
 </symbol>
-<symbol id="arrow-down" viewBox="0 0 32 32">
+<symbol id="icon-down" viewBox="0 0 32 32">
 <path fill="none" stroke="#f9f9f9" style="stroke: var(--color1, #f9f9f9)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3" d="M8 12l8 8 8-8"></path>
 </symbol>
 </defs>

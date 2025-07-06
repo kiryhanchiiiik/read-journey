@@ -43,8 +43,8 @@ const MyLibrary = () => {
             >
               {selected}
               <div className={`${css.arrow} ${isOpen ? css.arrowUp : ""}`}>
-                <svg width="12" height="12">
-                  {/* <use href={`${sprite}#down`} /> */}
+                <svg width={16} height={16}>
+                  <use href="/sprite#arrow" />
                 </svg>
               </div>
             </button>

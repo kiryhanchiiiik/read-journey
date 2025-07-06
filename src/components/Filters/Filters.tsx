@@ -71,7 +71,7 @@ const Filters = () => {
         <Link className={css.link} to="/library">
           My library
           <svg width={24} height={24}>
-            <use href="/public/sprite.svg#arrow"></use>
+            <use href="/sprite.svg#arrow"></use>
           </svg>
         </Link>
       </div>

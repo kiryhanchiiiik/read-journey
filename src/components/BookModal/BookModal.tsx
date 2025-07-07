@@ -6,6 +6,7 @@ type Book = {
   imageUrl: string;
   title: string;
   author: string;
+  totalPages: string;
 };
 
 type Props = {
@@ -32,7 +33,8 @@ const BookModal: React.FC<Props> = ({ book, onClose }) => {
         </button>
         <img src={book.imageUrl} alt={book.title} className={css.modalImage} />
         <h2>{book.title}</h2>
-        <p>{book.author}</p>
+        <p className={css.authorPh}>{book.author}</p>
+        <p className={css.pagesPh}>{book.totalPages} pages</p>
         <button className={css.addBtn}>Add to library</button>
       </div>
     </div>

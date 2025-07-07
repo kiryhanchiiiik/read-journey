@@ -2,12 +2,15 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { useState, useEffect, useRef } from "react";
 import { authInstance } from "../../redux/auth/operations";
-import css from "./BookList.module.scss";
+import BookModal from "./../BookModal/BookModal";
 import "swiper/css";
 import "swiper/css/navigation";
+import css from "./BookList.module.scss";
 
 const BookList = () => {
   const [books, setBooks] = useState<any[] | null>(null);
+  const [selectedBook, setSelectedBook] = useState<any | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const prevRef = useRef<HTMLButtonElement>(null);
   const nextRef = useRef<HTMLButtonElement>(null);
@@ -24,6 +27,16 @@ const BookList = () => {
 
     fetchBooks();
   }, []);
+
+  const openModal = (book: any) => {
+    setSelectedBook(book);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedBook(null);
+  };
 
   return (
     <div className={css.bookList}>
@@ -70,6 +83,8 @@ const BookList = () => {
                     className={css.contentImg}
                     src={book.imageUrl}
                     alt={book.title}
+                    onClick={() => openModal(book)}
+                    style={{ cursor: "pointer" }}
                   />
                   <h3 className={css.contentTitle}>{book.title}</h3>
                   <p className={css.authorPh}>{book.author}</p>
@@ -78,6 +93,10 @@ const BookList = () => {
             ))}
           </Swiper>
         </>
+      )}
+
+      {isModalOpen && selectedBook && (
+        <BookModal book={selectedBook} onClose={closeModal} />
       )}
     </div>
   );

@@ -1,0 +1,59 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 20px;
+  width: 335px;
+  height: 100%;
+  background: rgba(20, 20, 20, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #1f1f1f;
+  border: 1px solid rgba(104, 104, 104, 0.2);
+  padding-top: 40px;
+  padding-bottom: 40px;
+  border-radius: 12px;
+  width: 335px;
+  height: 421px;
+  position: relative;
+  text-align: center;
+
+  h2 {
+    font-size: 18px;
+  }
+  p {
+    font-size: 12px;
+    color: #686868;
+    margin-bottom: 36px;
+  }
+}
+
+.modalImage {
+  width: 140px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.addBtn {
+  font-family: "Gilroy-Bold", sans-serif;
+  color: #f9f9f9;
+  font-size: 14px;
+}

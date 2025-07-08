@@ -3,6 +3,7 @@ import { Navigation } from "swiper/modules";
 import { useState, useEffect, useRef } from "react";
 import { authInstance } from "../../redux/auth/operations";
 import BookModal from "./../BookModal/BookModal";
+import like from "../../img/like.png";
 import "swiper/css";
 import "swiper/css/navigation";
 import css from "./BookList.module.scss";
@@ -124,7 +125,16 @@ const BookList = () => {
               </svg>
             </button>
             <div className={css.confirmText}>
-              Книга добавлена в библиотеку ✅
+              <div className={css.confirmTextWrapper}>
+                <img className={css.likeImg} src={like} alt="like" />
+                <div>
+                  <h3>Good job</h3>
+                  <p>
+                    Your book is now in <span>the library!</span> The joy knows
+                    no bounds and now you can start your training
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

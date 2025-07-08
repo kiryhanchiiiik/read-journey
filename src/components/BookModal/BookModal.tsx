@@ -12,15 +12,21 @@ type Book = {
 type Props = {
   book: Book;
   onClose: () => void;
+  onAdd: () => void;
 };
 
-const BookModal: React.FC<Props> = ({ book, onClose }) => {
+const BookModal: React.FC<Props> = ({ book, onClose, onAdd }) => {
   const handleOverlayClick = () => {
     onClose();
   };
 
   const handleContentClick = (e: React.MouseEvent) => {
     e.stopPropagation();
+  };
+
+  const handleAddLibrary = () => {
+    onAdd();
+    onClose();
   };
 
   return (
@@ -35,7 +41,9 @@ const BookModal: React.FC<Props> = ({ book, onClose }) => {
         <h2>{book.title}</h2>
         <p className={css.authorPh}>{book.author}</p>
         <p className={css.pagesPh}>{book.totalPages} pages</p>
-        <button className={css.addBtn}>Add to library</button>
+        <button onClick={handleAddLibrary} className={css.addBtn}>
+          Add to library
+        </button>
       </div>
     </div>
   );

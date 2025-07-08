@@ -11,6 +11,7 @@ const BookList = () => {
   const [books, setBooks] = useState<any[] | null>(null);
   const [selectedBook, setSelectedBook] = useState<any | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isConfirmModal, setIsConfirmModal] = useState(false);
 
   const prevRef = useRef<HTMLButtonElement>(null);
   const nextRef = useRef<HTMLButtonElement>(null);
@@ -36,6 +37,14 @@ const BookList = () => {
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedBook(null);
+  };
+
+  const handleAddToLibrary = () => {
+    setIsConfirmModal(true);
+  };
+
+  const closeConfirmModal = () => {
+    setIsConfirmModal(false);
   };
 
   return (
@@ -96,7 +105,29 @@ const BookList = () => {
       )}
 
       {isModalOpen && selectedBook && (
-        <BookModal book={selectedBook} onClose={closeModal} />
+        <BookModal
+          book={selectedBook}
+          onClose={closeModal}
+          onAdd={handleAddToLibrary}
+        />
+      )}
+
+      {isConfirmModal && (
+        <div className={css.modalOverlay} onClick={closeConfirmModal}>
+          <div
+            className={css.modalContent}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button onClick={closeConfirmModal} className={css.closeBtn}>
+              <svg width={25} height={25}>
+                <use href="/sprite.svg#cross"></use>
+              </svg>
+            </button>
+            <div className={css.confirmText}>
+              Книга добавлена в библиотеку ✅
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

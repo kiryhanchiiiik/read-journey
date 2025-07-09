@@ -7,7 +7,6 @@ import like from "../../img/like.png";
 import "swiper/css";
 import "swiper/css/navigation";
 import css from "./BookList.module.scss";
-import Filters from "../Filters/Filters";
 import type { RootState } from "../../redux/store";
 import { useSelector } from "react-redux";
 

@@ -7,6 +7,9 @@ import like from "../../img/like.png";
 import "swiper/css";
 import "swiper/css/navigation";
 import css from "./BookList.module.scss";
+import Filters from "../Filters/Filters";
+import type { RootState } from "../../redux/store";
+import { useSelector } from "react-redux";
 
 const BookList = () => {
   const [books, setBooks] = useState<any[] | null>(null);
@@ -14,8 +17,22 @@ const BookList = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isConfirmModal, setIsConfirmModal] = useState(false);
 
+  const { title: filterTitle, author: filterAuthor } = useSelector(
+    (state: RootState) => state.filters
+  );
+
   const prevRef = useRef<HTMLButtonElement>(null);
   const nextRef = useRef<HTMLButtonElement>(null);
+
+  const filteredBooks = books?.filter((book) => {
+    const matchesTitle = book.title
+      .toLowerCase()
+      .includes(filterTitle.toLowerCase());
+    const matchesAuthor = book.author
+      .toLowerCase()
+      .includes(filterAuthor.toLowerCase());
+    return matchesTitle && matchesAuthor;
+  });
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -52,7 +69,7 @@ const BookList = () => {
     <div className={css.bookList}>
       <h1>Recommended</h1>
 
-      {Array.isArray(books) && books.length > 0 && (
+      {Array.isArray(filteredBooks) && filteredBooks.length > 0 && (
         <>
           <div className={css.btnWrapper}>
             <button ref={prevRef} className={css.customPrevBtn}>
@@ -86,7 +103,7 @@ const BookList = () => {
               }
             }}
           >
-            {books.map((book) => (
+            {filteredBooks.map((book) => (
               <SwiperSlide key={book._id}>
                 <div className={css.contentWrapper}>
                   <img

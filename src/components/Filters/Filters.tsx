@@ -1,38 +1,55 @@
 import { Link } from "react-router-dom";
 import css from "./Filters.module.scss";
+import { useAppDispatch, type RootState } from "../../redux/store";
+import { useSelector } from "react-redux";
+import { setTitle, setAuthor } from "../../redux/filters/slice";
+import { useState } from "react";
 
 const Filters = () => {
+  const dispatch = useAppDispatch();
+  const { title, author } = useSelector((state: RootState) => state.filters);
+
+  // локальное состояние
+  const [localTitle, setLocalTitle] = useState(title);
+  const [localAuthor, setLocalAuthor] = useState(author);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    dispatch(setTitle(localTitle));
+    dispatch(setAuthor(localAuthor));
+  };
+
   return (
     <div className={css.filters}>
       <div className={css.formContainer}>
         <span className={css.filterLabel}>Filters:</span>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className={css.formWrapper}>
             <div className={css.inputWrapper}>
-              <label htmlFor="name" className={css.label}>
+              <label htmlFor="title" className={css.label}>
                 Book title:
               </label>
               <input
-                id="name"
+                id="title"
                 className={css.input}
                 type="text"
-                // {...formRegister("name")}
+                value={localTitle}
+                onChange={(e) => setLocalTitle(e.target.value)}
                 placeholder="Enter text"
               />
-              {/* <div className={css.error}>{errors.name?.message}</div> */}
             </div>
             <div className={css.inputWrapper}>
-              <label htmlFor="name" className={css.label}>
+              <label htmlFor="author" className={css.label}>
                 The author:
               </label>
               <input
-                id="name"
+                id="author"
                 className={`${css.input} ${css.inputMargin}`}
                 type="text"
-                // {...formRegister("name")}
+                value={localAuthor}
+                onChange={(e) => setLocalAuthor(e.target.value)}
                 placeholder="Enter text"
               />
-              {/* <div className={css.error}>{errors.name?.message}</div> */}
             </div>
             <div className={css.btnContainer}>
               <button className={css.applyBtn} type="submit">
@@ -42,6 +59,8 @@ const Filters = () => {
           </div>
         </form>
       </div>
+
+      {/* остальной блок про тренировку */}
       <div className={css.libraryContainer}>
         <h2>Start your workout</h2>
         <ul className={css.stepNav}>

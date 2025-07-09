@@ -122,6 +122,10 @@ const BookList = () => {
         </>
       )}
 
+      {filteredBooks?.length === 0 && (
+        <p className={css.noBooksText}>No books match your filters😕</p>
+      )}
+
       {isModalOpen && selectedBook && (
         <BookModal
           book={selectedBook}

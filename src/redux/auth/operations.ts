@@ -77,9 +77,6 @@ export const login = createAsyncThunk<
       token: data.token,
     };
   } catch (e: any) {
-    if (e.response?.status === 400) {
-      toast.error("No such user found or incorrect credentials.");
-    }
     return thunkApi.rejectWithValue(e.message);
   }
 });

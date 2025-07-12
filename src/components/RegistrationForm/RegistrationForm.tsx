@@ -44,7 +44,7 @@ const RegistrationForm = () => {
 
   const onSubmit = async (data: RegistrationFormValues) => {
     try {
-      await dispatch(register(data));
+      await dispatch(register(data)).unwrap();
       navigate("/");
 
       toast.success("Registration successful!", {

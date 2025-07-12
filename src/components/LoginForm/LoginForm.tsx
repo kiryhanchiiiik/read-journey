@@ -39,13 +39,13 @@ const LoginForm = () => {
 
   const onSubmit = async (data: LoginFormValues) => {
     try {
-      await dispatch(login(data));
-      navigate("/");
-
+      await dispatch(login(data)).unwrap();
       toast.success("Login successful!", {
         position: "top-right",
         autoClose: 5000,
       });
+
+      navigate("/");
       reset();
     } catch (err) {
       console.error("Login error:", err);

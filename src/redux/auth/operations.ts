@@ -47,7 +47,13 @@ export const register = createAsyncThunk<
   try {
     const { data } = await authInstance.post("/users/signup", formData);
     setToken(data.token);
-    return data;
+    return {
+      user: {
+        name: data.name,
+        email: data.email,
+      },
+      token: data.token,
+    };
   } catch (e: any) {
     return thunkApi.rejectWithValue(e.message);
   }

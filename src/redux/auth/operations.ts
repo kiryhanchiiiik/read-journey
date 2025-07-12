@@ -60,10 +60,18 @@ export const login = createAsyncThunk<
 >("auth/login", async (formData, thunkApi) => {
   try {
     const { data } = await authInstance.post("/users/signin", formData);
+
     setToken(data.token);
-    return data;
+
+    return {
+      user: {
+        name: data.name,
+        email: data.email,
+      },
+      token: data.token,
+    };
   } catch (e: any) {
-    if (e.response && e.response.status === 400) {
+    if (e.response?.status === 400) {
       toast.error("No such user found or incorrect credentials.");
     }
     return thunkApi.rejectWithValue(e.message);

@@ -1,8 +1,8 @@
 import React from "react";
 import css from "./BookModal.module.scss";
 import { useAppDispatch } from "../../redux/store";
-import axios from "axios";
 import { addBook } from "../../redux/books/slice";
+import { axiosInstance } from "../../api/axiosInstance";
 
 type Book = {
   _id: string;
@@ -23,7 +23,7 @@ const BookModal: React.FC<Props> = ({ book, onClose, onAdd }) => {
 
   const handleAddLibrary = async () => {
     try {
-      const response = await axios.post(`/books/add/`);
+      const response = await axiosInstance.post(`/books/add/${book._id}`);
       console.log(response);
       dispatch(addBook(response.data));
 

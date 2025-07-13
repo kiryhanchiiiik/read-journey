@@ -1,21 +1,15 @@
 import { useState, useRef, useEffect } from "react";
 import book from "../../img/book.png";
 import css from "./MyLibrary.module.scss";
+import { useSelector } from "react-redux";
+import { myBooks } from "../../redux/books/selectors";
 
 const filterOptions = ["Unread", "In progress", "Done", "All books"];
 
-type Book = {
-  _id: string;
-  imageUrl: string;
-  title: string;
-  author: string;
-  totalPages: string;
-};
-
 const MyLibrary = () => {
+  const books = useSelector(myBooks);
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState<string>("All books");
-  const [books, setBooks] = useState<Book[] | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const handleToggle = () => {
@@ -76,15 +70,32 @@ const MyLibrary = () => {
         </div>
       </div>
 
-      <div className={css.flexContainer}>
-        <div className={css.noBookContainer}>
-          <img src={book} alt="" />
+      {books.length === 0 ? (
+        <div className={css.flexContainer}>
+          <div className={css.noBookContainer}>
+            <img src={book} alt="" />
+          </div>
+          <p className={css.noBookDesc}>
+            To start training, <span>add some of your books</span> or from the
+            recommended ones
+          </p>
         </div>
-        <p className={css.noBookDesc}>
-          To start training, <span>add some of your books</span> or from the
-          recommended ones
-        </p>
-      </div>
+      ) : (
+        <div className={css.booksContainer}>
+          {books.map((book) => (
+            <div key={book._id} className={css.bookCard}>
+              <img src={book.imageUrl} alt={book.title} />
+              <div className={css.btnFlex}>
+                <div className={css.infoContainer}>
+                  <h3>{book.title}</h3>
+                  <p>{book.author}</p>
+                </div>
+                <button>del</button>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

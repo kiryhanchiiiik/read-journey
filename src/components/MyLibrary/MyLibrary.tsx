@@ -90,7 +90,11 @@ const MyLibrary = () => {
                   <h3>{book.title}</h3>
                   <p>{book.author}</p>
                 </div>
-                <button>del</button>
+                <button type="button" className={css.deleteBtn}>
+                  <svg width={14} height={14}>
+                    <use href="/public/sprite.svg#trash"></use>
+                  </svg>
+                </button>
               </div>
             </div>
           ))}

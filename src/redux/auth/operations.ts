@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { axiosInstance } from "../../api/axiosInstance";
 
 export type User = {
   name: string | null;
@@ -26,16 +26,12 @@ interface RootState {
   };
 }
 
-export const authInstance = axios.create({
-  baseURL: "https://readjourney.b.goit.study/api",
-});
-
 export const setToken = (token: string) => {
-  authInstance.defaults.headers.common.Authorization = `Bearer ${token}`;
+  axiosInstance.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
 export const clearToken = () => {
-  authInstance.defaults.headers.common.Authorization = "";
+  axiosInstance.defaults.headers.common.Authorization = "";
 };
 
 export const register = createAsyncThunk<
@@ -44,7 +40,7 @@ export const register = createAsyncThunk<
   { rejectValue: string }
 >("auth/register", async (formData, thunkApi) => {
   try {
-    const { data } = await authInstance.post("/users/signup", formData);
+    const { data } = await axiosInstance.post("/users/signup", formData);
     setToken(data.token);
     return {
       user: {
@@ -64,7 +60,7 @@ export const login = createAsyncThunk<
   { rejectValue: string }
 >("auth/login", async (formData, thunkApi) => {
   try {
-    const { data } = await authInstance.post("/users/signin", formData);
+    const { data } = await axiosInstance.post("/users/signin", formData);
 
     setToken(data.token);
 
@@ -94,7 +90,7 @@ export const refreshUser = createAsyncThunk<
 
   try {
     setToken(token);
-    const { data } = await authInstance.get("/users/current");
+    const { data } = await axiosInstance.get("/users/current");
     return data.user;
   } catch (e: any) {
     return thunkApi.rejectWithValue(e.message);
@@ -105,7 +101,7 @@ export const logout = createAsyncThunk<void, void, { rejectValue: string }>(
   "auth/logout",
   async (_, thunkApi) => {
     try {
-      await authInstance.post("/users/signout");
+      await axiosInstance.post("/users/signout");
       clearToken();
     } catch (e: any) {
       return thunkApi.rejectWithValue(e.message);

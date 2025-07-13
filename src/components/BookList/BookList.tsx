@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { useState, useEffect, useRef } from "react";
-import { authInstance } from "../../redux/auth/operations";
+import { axiosInstance } from "../../api/axiosInstance";
 import BookModal from "./../BookModal/BookModal";
 import like from "../../img/like.png";
 import "swiper/css";
@@ -36,7 +36,7 @@ const BookList = () => {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await authInstance.get("/books/recommend");
+        const response = await axiosInstance.get("/books/recommend");
         setBooks(response.data.results);
       } catch (error) {
         console.error("Error fetching books:", error);

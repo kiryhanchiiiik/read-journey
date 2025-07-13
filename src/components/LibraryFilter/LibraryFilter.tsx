@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { authInstance } from "../../redux/auth/operations";
+import { axiosInstance } from "../../api/axiosInstance";
 import css from "./LibraryFilter.module.scss";
 
 const getRandomBooks = (books: any[], count: number) => {
@@ -14,7 +14,7 @@ const LibraryFilter = () => {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await authInstance.get("/books/recommend");
+        const response = await axiosInstance.get("/books/recommend");
         const randomBooks = getRandomBooks(response.data.results, 3);
         setBooks(randomBooks);
       } catch (error) {

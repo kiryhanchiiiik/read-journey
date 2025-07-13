@@ -4,9 +4,18 @@ import css from "./MyLibrary.module.scss";
 
 const filterOptions = ["Unread", "In progress", "Done", "All books"];
 
+type Book = {
+  _id: string;
+  imageUrl: string;
+  title: string;
+  author: string;
+  totalPages: string;
+};
+
 const MyLibrary = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState<string>("All books");
+  const [books, setBooks] = useState<Book[] | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const handleToggle = () => {

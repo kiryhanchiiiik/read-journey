@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { authReducer } from "./auth/slice";
 import filterReducer from "./filters/slice";
+import bookReducer from "./books/slice";
 import { useDispatch } from "react-redux";
 import {
   persistReducer,
@@ -27,6 +28,7 @@ export const store = configureStore({
   reducer: {
     auth: persistedAuthReducer,
     filters: filterReducer,
+    books: bookReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

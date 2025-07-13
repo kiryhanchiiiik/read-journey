@@ -1,5 +1,8 @@
 import React from "react";
 import css from "./BookModal.module.scss";
+import { useAppDispatch } from "../../redux/store";
+import axios from "axios";
+import { addBook } from "../../redux/books/slice";
 
 type Book = {
   _id: string;
@@ -16,17 +19,27 @@ type Props = {
 };
 
 const BookModal: React.FC<Props> = ({ book, onClose, onAdd }) => {
+  const dispatch = useAppDispatch();
+
+  const handleAddLibrary = async () => {
+    try {
+      const response = await axios.post(`/books/add/`);
+      console.log(response);
+      dispatch(addBook(response.data));
+
+      onAdd();
+      onClose();
+    } catch (error) {
+      console.error("Ошибка при добавлении книги:", error);
+    }
+  };
+
   const handleOverlayClick = () => {
     onClose();
   };
 
   const handleContentClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-  };
-
-  const handleAddLibrary = () => {
-    onAdd();
-    onClose();
   };
 
   return (

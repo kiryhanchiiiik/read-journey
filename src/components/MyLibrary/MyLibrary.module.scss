@@ -174,9 +174,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px #e85050 solid;
+  border: 1px rgba(232, 80, 80, 0.2) solid;
   background-color: rgba(232, 80, 80, 0.1);
   border-radius: 100%;
   width: 28px;
   height: 28px;
+
+  transition: border 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover,
+  &:focus {
+    border: 1px #e85050 solid;
+  }
 }

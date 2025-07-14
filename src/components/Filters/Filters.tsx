@@ -9,7 +9,6 @@ const Filters = () => {
   const dispatch = useAppDispatch();
   const { title, author } = useSelector((state: RootState) => state.filters);
 
-  // локальное состояние
   const [localTitle, setLocalTitle] = useState(title);
   const [localAuthor, setLocalAuthor] = useState(author);
 
@@ -60,7 +59,6 @@ const Filters = () => {
         </form>
       </div>
 
-      {/* остальной блок про тренировку */}
       <div className={css.libraryContainer}>
         <h2>Start your workout</h2>
         <ul className={css.stepNav}>

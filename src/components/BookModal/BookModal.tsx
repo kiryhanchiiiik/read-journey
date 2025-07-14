@@ -30,7 +30,7 @@ const BookModal: React.FC<Props> = ({ book, onClose, onAdd }) => {
       onAdd();
       onClose();
     } catch (error) {
-      console.error("Ошибка при добавлении книги:", error);
+      console.log(error);
     }
   };
 

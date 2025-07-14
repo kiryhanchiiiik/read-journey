@@ -65,7 +65,7 @@ const LibraryFilter = () => {
               />
             </div>
             <div className={css.btnContainer}>
-              <button className={css.applyBtn} type="submit">
+              <button className={css.applyBtn} type="button">
                 Add book
               </button>
             </div>

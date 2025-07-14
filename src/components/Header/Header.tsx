@@ -1,7 +1,7 @@
 import { useState } from "react";
 import clsx from "clsx";
 import css from "./Header.module.scss";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useAppDispatch } from "../../redux/store";
 import { logout } from "../../redux/auth/operations";
 import { useSelector } from "react-redux";
@@ -30,9 +30,9 @@ const Header = () => {
     <header className={css.header}>
       <div className={css.headerContent}>
         <div className={css.logoWrapper}>
-          <a href="#" className={css.logo}>
+          <Link to="/" className={css.logo}>
             <img src="/logo.svg" alt="" />
-          </a>
+          </Link>
         </div>
         <div className={css.menuWrapper}>
           <div className={css.avatarName}>

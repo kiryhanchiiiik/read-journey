@@ -3,14 +3,21 @@ import book from "../../img/book.png";
 import css from "./MyLibrary.module.scss";
 import { useSelector } from "react-redux";
 import { myBooks } from "../../redux/books/selectors";
+import { useAppDispatch } from "../../redux/store";
+import { deleteBook } from "../../redux/books/slice";
 
 const filterOptions = ["Unread", "In progress", "Done", "All books"];
 
 const MyLibrary = () => {
+  const dispatch = useAppDispatch();
   const books = useSelector(myBooks);
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState<string>("All books");
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const handleDelete = (id: string) => {
+    dispatch(deleteBook(id));
+  };
 
   const handleToggle = () => {
     setIsOpen((prev) => !prev);
@@ -90,7 +97,11 @@ const MyLibrary = () => {
                   <h3>{book.title}</h3>
                   <p>{book.author}</p>
                 </div>
-                <button type="button" className={css.deleteBtn}>
+                <button
+                  onClick={() => handleDelete(book._id)}
+                  type="button"
+                  className={css.deleteBtn}
+                >
                   <svg width={14} height={14}>
                     <use href="/public/sprite.svg#trash"></use>
                   </svg>

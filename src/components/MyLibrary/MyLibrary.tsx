@@ -4,8 +4,7 @@ import css from "./MyLibrary.module.scss";
 import { useSelector } from "react-redux";
 import { myBooks } from "../../redux/books/selectors";
 import { useAppDispatch } from "../../redux/store";
-import { deleteBook } from "../../redux/books/slice";
-import { fetchUserBooks } from "../../redux/books/operations";
+import { deleteUserBook, fetchUserBooks } from "../../redux/books/operations";
 
 const filterOptions = ["Unread", "In progress", "Done", "All books"];
 
@@ -21,7 +20,7 @@ const MyLibrary = () => {
   }, [dispatch]);
 
   const handleDelete = (id: string) => {
-    dispatch(deleteBook(id));
+    dispatch(deleteUserBook(id));
   };
 
   const handleToggle = () => {

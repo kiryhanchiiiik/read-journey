@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { fetchUserBooks } from "./operations";
+import { fetchUserBooks, deleteUserBook } from "./operations";
 
 export type Book = {
   _id: string;
@@ -32,11 +32,6 @@ const booksSlice = createSlice({
         state.myBooks.push(action.payload);
       }
     },
-    deleteBook(state, action: PayloadAction<string>) {
-      state.myBooks = state.myBooks.filter(
-        (book) => book._id !== action.payload
-      );
-    },
   },
   extraReducers: (builder) =>
     builder
@@ -51,8 +46,26 @@ const booksSlice = createSlice({
       .addCase(fetchUserBooks.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload ?? "Error";
+      })
+
+      .addCase(deleteUserBook.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(
+        deleteUserBook.fulfilled,
+        (state, action: PayloadAction<string>) => {
+          state.isLoading = false;
+          state.myBooks = state.myBooks.filter(
+            (book) => book._id !== action.payload
+          );
+        }
+      )
+      .addCase(deleteUserBook.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload ?? "Failed to delete book";
       }),
 });
 
-export const { addBook, deleteBook } = booksSlice.actions;
+export const { addBook } = booksSlice.actions;
 export default booksSlice.reducer;

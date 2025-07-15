@@ -19,10 +19,10 @@ export const deleteUserBook = createAsyncThunk<
   string,
   string,
   { rejectValue: string }
->("books/deleteUserBook", async (bookId, thunkApi) => {
+>("books/deleteUserBook", async (id, thunkApi) => {
   try {
-    await axiosInstance.delete(`/books/remove/${bookId}`);
-    return bookId;
+    await axiosInstance.delete(`/books/remove/${id}`);
+    return id;
   } catch (e: any) {
     return thunkApi.rejectWithValue(e.message);
   }

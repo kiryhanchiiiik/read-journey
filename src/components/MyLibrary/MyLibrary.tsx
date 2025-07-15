@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { myBooks } from "../../redux/books/selectors";
 import { useAppDispatch } from "../../redux/store";
 import { deleteBook } from "../../redux/books/slice";
+import { fetchUserBooks } from "../../redux/books/operations";
 
 const filterOptions = ["Unread", "In progress", "Done", "All books"];
 
@@ -14,6 +15,10 @@ const MyLibrary = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState<string>("All books");
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    dispatch(fetchUserBooks());
+  }, [dispatch]);
 
   const handleDelete = (id: string) => {
     dispatch(deleteBook(id));

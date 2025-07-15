@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
+import { fetchUserBooks } from "./operations";
 
 export type Book = {
   _id: string;
@@ -11,10 +12,14 @@ export type Book = {
 
 type BooksState = {
   myBooks: Book[];
+  isLoading: boolean;
+  error: string | null;
 };
 
 const initialState: BooksState = {
   myBooks: [],
+  isLoading: false,
+  error: null,
 };
 
 const booksSlice = createSlice({
@@ -33,6 +38,20 @@ const booksSlice = createSlice({
       );
     },
   },
+  extraReducers: (builder) =>
+    builder
+      .addCase(fetchUserBooks.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(fetchUserBooks.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.myBooks = action.payload;
+      })
+      .addCase(fetchUserBooks.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload ?? "Error";
+      }),
 });
 
 export const { addBook, deleteBook } = booksSlice.actions;

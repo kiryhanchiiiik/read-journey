@@ -107,7 +107,7 @@ const MyLibrary = () => {
                   className={css.deleteBtn}
                 >
                   <svg width={14} height={14}>
-                    <use href="/public/sprite.svg#trash"></use>
+                    <use href="/sprite.svg#trash"></use>
                   </svg>
                 </button>
               </div>

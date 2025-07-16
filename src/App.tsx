@@ -11,6 +11,7 @@ import { selectUserIsRefreshing } from "./redux/auth/selectors";
 import { useEffect } from "react";
 import { refreshUser } from "./redux/auth/operations";
 import LibraryPage from "./pages/LibraryPage/LibraryPage";
+import ReadingPage from "./pages/ReadingPage/ReadingPage";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -35,6 +36,10 @@ function App() {
         <Route
           path="/library"
           element={<PrivateRoute element={<LibraryPage />} />}
+        />
+        <Route
+          path="/reading"
+          element={<PrivateRoute element={<ReadingPage />} />}
         />
       </Routes>
       <ToastContainer />

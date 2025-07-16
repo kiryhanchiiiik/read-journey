@@ -1,4 +1,5 @@
-// import { useAppDispatch } from "../../redux/store";
+import { Link } from "react-router-dom";
+import type { Book } from "../../redux/books/slice";
 import css from "./BookReadModal.module.scss";
 
 type BookReadModalProps = {
@@ -7,19 +8,12 @@ type BookReadModalProps = {
 };
 
 const BookReadModal = ({ book, onClose }: BookReadModalProps) => {
-  //   const dispatch = useAppDispatch();
-
   const handleOverlayClick = () => {
     onClose();
   };
 
   const handleContentClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-  };
-
-  const handleAddLibrary = () => {
-    // dispatch(addBook(book));
-    onClose();
   };
 
   return (
@@ -34,9 +28,9 @@ const BookReadModal = ({ book, onClose }: BookReadModalProps) => {
         <h2>{book.title}</h2>
         <p className={css.authorPh}>{book.author}</p>
         <p className={css.pagesPh}>{book.totalPages} pages</p>
-        <button onClick={handleAddLibrary} className={css.addBtn}>
+        <Link to="/reading" className={css.addBtn}>
           Start read
-        </button>
+        </Link>
       </div>
     </div>
   );

@@ -71,7 +71,8 @@
 .modalOverlay {
   position: fixed;
   top: 0;
-  left: 20px;
+  left: 0;
+  right: 0;
   height: 100%;
   background: rgba(20, 20, 20, 0.6);
   display: flex;

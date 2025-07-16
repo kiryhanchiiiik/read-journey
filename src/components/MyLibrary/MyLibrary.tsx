@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { myBooks } from "../../redux/books/selectors";
 import { useAppDispatch } from "../../redux/store";
 import { deleteUserBook, fetchUserBooks } from "../../redux/books/operations";
+import BookReadModal from "../BookReadModal/BookReadModal";
 
 const filterOptions = ["Unread", "In progress", "Done", "All books"];
 
@@ -12,6 +13,8 @@ const MyLibrary = () => {
   const dispatch = useAppDispatch();
   const books = useSelector(myBooks);
   const [isOpen, setIsOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedBook, setSelectedBook] = useState<any | null>(null);
   const [selected, setSelected] = useState<string>("All books");
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -30,6 +33,16 @@ const MyLibrary = () => {
   const handleSelect = (option: string) => {
     setSelected(option);
     setIsOpen(false);
+  };
+
+  const openModal = (book: any) => {
+    setSelectedBook(book);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedBook(null);
   };
 
   useEffect(() => {
@@ -94,7 +107,11 @@ const MyLibrary = () => {
       ) : (
         <div className={css.booksContainer}>
           {books.map((book) => (
-            <div key={book._id} className={css.bookCard}>
+            <div
+              onClick={() => openModal(book)}
+              key={book._id}
+              className={css.bookCard}
+            >
               <img src={book.imageUrl} alt={book.title} />
               <div className={css.btnFlex}>
                 <div className={css.infoContainer}>
@@ -102,7 +119,10 @@ const MyLibrary = () => {
                   <p>{book.author}</p>
                 </div>
                 <button
-                  onClick={() => handleDelete(book._id)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleDelete(book._id);
+                  }}
                   type="button"
                   className={css.deleteBtn}
                 >
@@ -114,6 +134,10 @@ const MyLibrary = () => {
             </div>
           ))}
         </div>
+      )}
+
+      {isModalOpen && selectedBook && (
+        <BookReadModal book={selectedBook} onClose={closeModal} />
       )}
     </div>
   );

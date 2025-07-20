@@ -1,0 +1,36 @@
+.myReading {
+  border-radius: 30px;
+  padding: 20px 20px 40px 20px;
+  background-color: #1f1f1f;
+
+  h3 {
+    font-size: 20px;
+    margin-bottom: 40px;
+  }
+}
+
+.bookContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+
+  .bookPhoto {
+    border-radius: 8px;
+    width: 137px;
+    margin-bottom: 10px;
+  }
+  h2 {
+    font-size: 14px;
+    text-align: center;
+  }
+  p {
+    font-size: 10px;
+    color: #686868;
+  }
+}
+
+.startBtn {
+  display: flex;
+  margin: 0 auto;
+}

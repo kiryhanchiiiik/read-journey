@@ -28,7 +28,7 @@ const BookReadModal = ({ book, onClose }: BookReadModalProps) => {
         <h2>{book.title}</h2>
         <p className={css.authorPh}>{book.author}</p>
         <p className={css.pagesPh}>{book.totalPages} pages</p>
-        <Link to="/reading" className={css.addBtn}>
+        <Link to="/reading" state={book} className={css.addBtn}>
           Start read
         </Link>
       </div>
